@@ -21,6 +21,7 @@ public class WahlTest {
         Assert.assertArrayEquals(erwartet, wahl.getKandidatenAsArray());
     }
     
+    @Test
     public void addKandidatUndGetKandidat(){
         Wahl wahl = new Wahl();
         Kandidat k = new Kandidat("Olaf Scholz");

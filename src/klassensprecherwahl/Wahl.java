@@ -15,6 +15,9 @@ public class Wahl {
     private ArrayList<Stimmzettel> stimmzettel;
     
     
+    public Wahl(){
+        kandidaten = new HashMap<String,Kandidat>();
+    }
     
     public String getWahlergebnis() {
         return "";
@@ -43,7 +46,7 @@ public class Wahl {
     
     
     public Kandidat[] getKandidatenAsArray() {
-        return new Kandidat[3];//kandidaten.values().toArray();
+        return kandidaten.values().toArray(new Kandidat[0]);
     }
     
     
