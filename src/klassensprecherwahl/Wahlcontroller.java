@@ -34,4 +34,13 @@ public class Wahlcontroller {
         wahl.addKandidat(k);
     }
     
+    public void setThesen(String kandidat, String thesen){
+        wahl.findKandidatByName(kandidat).setThesen(thesen);
+    }
+    
+    public String getThesen(String kandidat){
+        Kandidat k = wahl.findKandidatByName(kandidat);
+        return k == null ? "" : k.getThesen();
+    }
+    
 }

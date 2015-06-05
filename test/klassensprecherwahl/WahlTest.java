@@ -31,4 +31,17 @@ public class WahlTest {
         assertEquals(k, ergebnis[0]);
     }
     
+    @Test
+    public void getKandidatByName(){
+        Wahl wahl = new Wahl();
+        Kandidat k = new Kandidat("Olaf Scholz");
+        wahl.addKandidat(k);
+        assertEquals(k, wahl.findKandidatByName("Olaf Scholz"));
+    }
+    
+    @Test
+    public void findKandidatByNameWennNichtVorhanden(){
+        Wahl wahl = new Wahl();
+        assertEquals(null, wahl.findKandidatByName("Olaf Scholz"));
+    }
 }
