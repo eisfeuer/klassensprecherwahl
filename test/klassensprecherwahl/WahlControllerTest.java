@@ -45,4 +45,17 @@ public class WahlControllerTest {
         assertEquals("",wc.getThesen("ghost"));
     }
     
+    @Test
+    public void getStimmzettel(){
+        Wahlcontroller wc = new Wahlcontroller();
+        wc.addKandidat("a");
+        wc.setThesen("a", "t");
+        wc.addKandidat("b");
+        wc.setThesen("b", "u");
+        wc.addKandidat("c");
+        wc.setThesen("c", "v");
+        String[][] erwarted = {{"a","t"},{"b","u"},{"c","v"}};
+        Assert.assertArrayEquals(erwarted, wc.getStimmzettel());
+    }
+    
 }

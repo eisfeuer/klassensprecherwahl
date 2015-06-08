@@ -34,5 +34,10 @@ public class Kandidat {
     public void setThesen(String thesen){
         this.thesen = thesen;
     }
+    
+    @Override
+    public int compareTo(Kandidat other){
+        
+    }
 
 }

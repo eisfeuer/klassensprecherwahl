@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class Wahlcontroller {
     
-    private Wahl wahl;
+    private final Wahl wahl;
     
     public Wahlcontroller(){
         wahl = new Wahl();
@@ -43,4 +43,14 @@ public class Wahlcontroller {
         return k == null ? "" : k.getThesen();
     }
     
+    public String[][] getStimmzettel(){
+        Kandidat[] kandidaten = wahl.getKandidatenAsArray();
+        Arrays.sort(kandidaten);
+        String[][] stimmzettel = new String[kandidaten.length][2];
+        for(int i = 0; i < kandidaten.length; ++i){
+            stimmzettel[i][0] = kandidaten[i].getName();
+            stimmzettel[i][1] = kandidaten[i].getThesen();
+        }
+        return stimmzettel;
+    }
 }
