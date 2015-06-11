@@ -17,10 +17,15 @@ public class Wahl {
     
     public Wahl(){
         kandidaten = new HashMap<String,Kandidat>();
+        stimmzettel = new ArrayList<Stimmzettel>();
     }
     
-    public String getWahlergebnis() {
-        return "";
+    public Wahlergebnis getWahlergebnis() {
+        Wahlergebnis ergebnis = new Wahlergebnis();
+        for(Stimmzettel s:stimmzettel) {
+            s.auswerten(ergebnis);
+        }
+        return ergebnis;
     }
     
     

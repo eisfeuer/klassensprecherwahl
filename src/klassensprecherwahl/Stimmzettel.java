@@ -12,8 +12,17 @@ package klassensprecherwahl;
 public class Stimmzettel {
     private Kandidat[] kandidaten;
     
+    public Stimmzettel(Kandidat[] kandidaten){
+        this.kandidaten = kandidaten;
+    }
     
-    public void waehlen(Kandidat kandidat, int position) {
-        
+    public Kandidat[] getKandidaten(){
+        return kandidaten;
+    }
+    
+    public void auswerten(Wahlergebnis we){
+        for(Kandidat k:kandidaten){
+            we.addStimme(k);
+        }
     }
 }

@@ -53,4 +53,16 @@ public class Wahlcontroller {
         }
         return stimmzettel;
     }
+    
+    public void commitStimmzettel(String[] kandidaten){
+        Kandidat[] k = new Kandidat[kandidaten.length];
+        for(int i = 0; i < k.length; i++){
+            k[i] = wahl.findKandidatByName(kandidaten[i]);
+        }
+        wahl.addStimme(new Stimmzettel(k));
+    }
+    
+    public String[][] getWahlergebnis(){
+        return wahl.getWahlergebnis().getWahlergebnisAsStringArray();
+    }
 }

@@ -54,8 +54,22 @@ public class WahlControllerTest {
         wc.setThesen("b", "u");
         wc.addKandidat("c");
         wc.setThesen("c", "v");
-        String[][] erwarted = {{"a","t"},{"b","u"},{"c","v"}};
-        Assert.assertArrayEquals(erwarted, wc.getStimmzettel());
+        String[][] erwartet = {{"a","t"},{"b","u"},{"c","v"}};
+        Assert.assertArrayEquals(erwartet, wc.getStimmzettel());
+    }
+    
+    @Test
+    public void waehlenUndStatistikErmitteln(){
+       Wahlcontroller wc = new Wahlcontroller();
+       wc.addKandidat("a");
+       wc.addKandidat("b");
+       wc.addKandidat("c");
+       wc.commitStimmzettel(new String[] {"a","c","a","b","b"});
+       wc.commitStimmzettel(new String[] {"a","a","c","c","b"});
+       wc.commitStimmzettel(new String[] {"a","b","b","b","b"});
+       String[][] erwartet = {{"a","5"},{"b","7"},{"c","3"}};
+       Assert.assertArrayEquals(erwartet, wc.getWahlergebnis());
+       
     }
     
 }

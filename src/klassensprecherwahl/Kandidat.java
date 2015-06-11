@@ -9,7 +9,7 @@ package klassensprecherwahl;
  *
  * @author it3-schini
  */
-public class Kandidat {
+public class Kandidat implements Comparable {
 
     private String name;
     private String thesen;
@@ -36,8 +36,17 @@ public class Kandidat {
     }
     
     @Override
-    public int compareTo(Kandidat other){
-        
+    public int compareTo(Object other){
+        if(other.getClass() != getClass()){
+            return -1;
+        }
+        Kandidat andererKandidat = (Kandidat)other;
+        return name.compareTo(andererKandidat.getName());
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
 
 }
