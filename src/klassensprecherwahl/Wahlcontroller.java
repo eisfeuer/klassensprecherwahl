@@ -14,19 +14,21 @@ import java.util.Arrays;
 public class Wahlcontroller {
     
     private final Wahl wahl;
+    private Kandidat[] kandidatenliste = null;
+    private int position = 0;
     
     public Wahlcontroller(){
         wahl = new Wahl();
     }
     
-    public String[] getKandidaten(){
+    public String getKandidaten(){
         Kandidat[] kandidaten = wahl.getKandidatenAsArray();
-        String[] stringArray = new String[kandidaten.length];
+        Arrays.sort(kandidaten);
+        String strKandidaten = "";
         for(int i = 0; i < kandidaten.length; ++i){
-            stringArray[i] = kandidaten[i].getName();
+            strKandidaten += kandidaten[i].getName() + "\n";
         }
-        Arrays.sort(stringArray);
-        return stringArray;
+        return strKandidaten;
     }
     
     public void addKandidat(String name){
@@ -34,8 +36,8 @@ public class Wahlcontroller {
         wahl.addKandidat(k);
     }
     
-    public void setThesen(String kandidat, String thesen){
-        wahl.findKandidatByName(kandidat).setThesen(thesen);
+    public void setThesen(String thesen){
+        kandidatenliste[position != 0 ? position-1: 0].setThesen(thesen);
     }
     
     public String getThesen(String kandidat){
@@ -64,5 +66,14 @@ public class Wahlcontroller {
     
     public String[][] getWahlergebnis(){
         return wahl.getWahlergebnis().getWahlergebnisAsStringArray();
+    }
+    
+    public String getNext(){
+        if(kandidatenliste == null)
+            kandidatenliste = wahl.getKandidatenAsArray();
+        if(position < kandidatenliste.length)
+            return kandidatenliste[position++].getName();
+        else
+            return null;
     }
 }

@@ -18,7 +18,7 @@ public class WahlControllerTest {
     @Test
     public void getKandidatenOnInit(){
         Wahlcontroller wc = new Wahlcontroller();
-        Assert.assertArrayEquals(new String[0], wc.getKandidaten());
+        assertEquals("", wc.getKandidaten());
     }
     
     @Test
@@ -27,8 +27,8 @@ public class WahlControllerTest {
         wc.addKandidat("Stefan Kulow");
         wc.addKandidat("Niclas Schirrmeister");
         wc.addKandidat("Sean Sinare");
-        String[] erwartet = {"Niclas Schirrmeister","Sean Sinare","Stefan Kulow"};
-        Assert.assertArrayEquals(erwartet, wc.getKandidaten());
+        String erwartet = "Niclas Schirrmeister\nSean Sinare\nStefan Kulow\nyy";
+        assertEquals(erwartet, wc.getKandidaten());
     }
     
     @Test

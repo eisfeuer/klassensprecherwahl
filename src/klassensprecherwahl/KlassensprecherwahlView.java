@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * The application's main frame.
@@ -25,7 +26,8 @@ public class KlassensprecherwahlView extends FrameView {
         super(app);
 
         initComponents();
-
+        wahlPanel.setVisible(false);
+        //kandidatPanel.setVisible(false);
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -100,15 +102,6 @@ public class KlassensprecherwahlView extends FrameView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listShow = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listName = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
-        insertName1 = new javax.swing.JTextField();
-        addName = new javax.swing.JButton();
-        next1 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -119,78 +112,25 @@ public class KlassensprecherwahlView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
-
-        mainPanel.setName("mainPanel"); // NOI18N
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        listShow.setName("listAnzeige"); // NOI18N
-        jScrollPane1.setViewportView(listShow);
-
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        listName.setName("listName"); // NOI18N
-        jScrollPane2.setViewportView(listName);
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(klassensprecherwahl.KlassensprecherwahlApp.class).getContext().getResourceMap(KlassensprecherwahlView.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        insertName1.setText(resourceMap.getString("insertName.text")); // NOI18N
-        insertName1.setName("insertName"); // NOI18N
-
-        addName.setText(resourceMap.getString("addName.text")); // NOI18N
-        addName.setName("addName"); // NOI18N
-
-        next1.setText(resourceMap.getString("next1.text")); // NOI18N
-        next1.setName("next1"); // NOI18N
-
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(insertName1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addName)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(insertName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addName, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
-                        .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))))
-        );
+        mainPanel = new javax.swing.JPanel();
+        kandidatPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listShow = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        insertName1 = new javax.swing.JTextField();
+        addName = new javax.swing.JButton();
+        next1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        kandidatenListe = new javax.swing.JTextArea();
+        wahlPanel = new javax.swing.JPanel();
+        btnNext = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taThesen = new javax.swing.JTextArea();
+        lblKandidat = new javax.swing.JLabel();
 
         menuBar.setName("menuBar"); // NOI18N
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(klassensprecherwahl.KlassensprecherwahlApp.class).getContext().getResourceMap(KlassensprecherwahlView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
@@ -225,7 +165,7 @@ public class KlassensprecherwahlView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,18 +190,212 @@ public class KlassensprecherwahlView extends FrameView {
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setComponent(mainPanel);
+        mainPanel.setName("mainPanel"); // NOI18N
+
+        kandidatPanel.setName("kandidatPanel"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        listShow.setName("listAnzeige"); // NOI18N
+        jScrollPane1.setViewportView(listShow);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        insertName1.setText(resourceMap.getString("insertName.text")); // NOI18N
+        insertName1.setName("insertName"); // NOI18N
+
+        addName.setText(resourceMap.getString("addName.text")); // NOI18N
+        addName.setName("addName"); // NOI18N
+        addName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNameActionPerformed(evt);
+            }
+        });
+
+        next1.setText(resourceMap.getString("next1.text")); // NOI18N
+        next1.setName("next1"); // NOI18N
+        next1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                next1ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        kandidatenListe.setColumns(20);
+        kandidatenListe.setRows(5);
+        kandidatenListe.setName("kandidatenListe"); // NOI18N
+        jScrollPane3.setViewportView(kandidatenListe);
+
+        javax.swing.GroupLayout kandidatPanelLayout = new javax.swing.GroupLayout(kandidatPanel);
+        kandidatPanel.setLayout(kandidatPanelLayout);
+        kandidatPanelLayout.setHorizontalGroup(
+            kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kandidatPanelLayout.createSequentialGroup()
+                .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kandidatPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kandidatPanelLayout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kandidatPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(insertName1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addName))
+                            .addComponent(jScrollPane3))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        kandidatPanelLayout.setVerticalGroup(
+            kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kandidatPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kandidatPanelLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kandidatPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(insertName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1))
+                        .addGap(35, 35, 35)
+                        .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)))
+                .addGap(174, 174, 174))
+        );
+
+        wahlPanel.setBackground(resourceMap.getColor("wahlPanel.background")); // NOI18N
+        wahlPanel.setName("wahlPanel"); // NOI18N
+
+        btnNext.setText(resourceMap.getString("btnNext.text")); // NOI18N
+        btnNext.setName("btnNext"); // NOI18N
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        taThesen.setColumns(20);
+        taThesen.setRows(5);
+        taThesen.setName("taThesen"); // NOI18N
+        jScrollPane2.setViewportView(taThesen);
+
+        lblKandidat.setText(resourceMap.getString("lblKandidat.text")); // NOI18N
+        lblKandidat.setName("lblKandidat"); // NOI18N
+
+        javax.swing.GroupLayout wahlPanelLayout = new javax.swing.GroupLayout(wahlPanel);
+        wahlPanel.setLayout(wahlPanelLayout);
+        wahlPanelLayout.setHorizontalGroup(
+            wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wahlPanelLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblKandidat)
+                        .addGroup(wahlPanelLayout.createSequentialGroup()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createSequentialGroup()
+                        .addComponent(btnNext)
+                        .addContainerGap())))
+        );
+        wahlPanelLayout.setVerticalGroup(
+            wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(lblKandidat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNext)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(kandidatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(wahlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 591, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(kandidatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(wahlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        setComponent(kandidatPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNameActionPerformed
+        wahl.addKandidat(insertName1.getText());
+        update();
+    }//GEN-LAST:event_addNameActionPerformed
+
+    private void next1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next1ActionPerformed
+        kandidatPanel.setVisible(false);
+        setComponent(wahlPanel);
+        nextKandidat();
+        wahlPanel.setVisible(true);
+        mainPanel.revalidate();
+    }//GEN-LAST:event_next1ActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        wahl.setThesen(taThesen.getText());
+        nextKandidat();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void update(){
+        kandidatenListe.setText(wahl.getKandidaten());
+    }
+    
+    private void nextKandidat(){
+        String kandidat = wahl.getNext();
+        lblKandidat.setText(kandidat + " gibt seine Thesen ein");
+        taThesen.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addName;
+    private javax.swing.JButton btnNext;
     private javax.swing.JTextField insertName1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList listName;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel kandidatPanel;
+    private javax.swing.JTextArea kandidatenListe;
+    private javax.swing.JLabel lblKandidat;
     private javax.swing.JList listShow;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -270,8 +404,11 @@ public class KlassensprecherwahlView extends FrameView {
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JTextArea taThesen;
+    private javax.swing.JPanel wahlPanel;
     // End of variables declaration//GEN-END:variables
 
+    
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
@@ -279,4 +416,5 @@ public class KlassensprecherwahlView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
+    private Wahlcontroller wahl = new Wahlcontroller();
 }
