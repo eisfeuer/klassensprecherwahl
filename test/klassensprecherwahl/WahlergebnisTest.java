@@ -7,6 +7,7 @@ package klassensprecherwahl;
 
 
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 /**
  *
@@ -26,5 +27,18 @@ public class WahlergebnisTest {
         we.addStimme(k2);
         String[][] wahlergebnis = {{"a","3"},{"b","2"}};
         Assert.assertArrayEquals(wahlergebnis, we.getWahlergebnisAsStringArray());
-    }    
+    }
+    
+    @Test
+    public void getWahlsieger(){
+        Wahlergebnis we = new Wahlergebnis();
+        Kandidat k1 = new Kandidat("a");
+        Kandidat k2 = new Kandidat("b");
+        we.addStimme(k1);
+        we.addStimme(k1);
+        we.addStimme(k2);
+        we.addStimme(k1);
+        we.addStimme(k2);
+        assertEquals(k1,we.getWahlsieger());
+    }
 }

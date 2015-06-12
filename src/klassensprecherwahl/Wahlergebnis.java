@@ -5,6 +5,7 @@
  */
 package klassensprecherwahl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,16 +31,33 @@ public class Wahlergebnis {
     }
     
     public String[][] getWahlergebnisAsStringArray(){
-        String[][] ergebnis = new String[wahlergebnis.size()][2];
+        WahlergebnisItem[] items = toItems();
+        Arrays.sort(items);
+        String[][] ergebnis = new String[items.length][2];
+        for(int i = 0; i < items.length; i++){
+            ergebnis[i] = items[i].toStringArray();
+        }
+        return ergebnis;
+    }
+    
+    public Kandidat getWahlsieger(){
+        WahlergebnisItem[] items = toItems();
+        Arrays.sort(items);
+        return items.length < 1 ? null : items[0].getKandidat();
+    }
+    
+    private WahlergebnisItem[] toItems(){
+        WahlergebnisItem[] ergebnisse = new WahlergebnisItem[wahlergebnis.size()];
         Iterator iMap = wahlergebnis.entrySet().iterator();
         int i = 0;
         while(iMap.hasNext()){
             Map.Entry mapping = (Map.Entry) iMap.next();
-            ergebnis[i][0] = mapping.getKey().toString();
-            ergebnis[i][1] = mapping.getValue().toString();
+            Kandidat k = (Kandidat)mapping.getKey();
+            int stimmen = (Integer)mapping.getValue();
+            ergebnisse[i] = new WahlergebnisItem(k,stimmen);
             i++;
         }
-        return ergebnis;
+        return ergebnisse;
     }
     
 }
