@@ -4,6 +4,7 @@
 
 package klassensprecherwahl;
 
+import java.awt.GridLayout;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -11,11 +12,16 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.Timer;
 import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * The application's main frame.
@@ -26,7 +32,8 @@ public class KlassensprecherwahlView extends FrameView {
         super(app);
 
         initComponents();
-        wahlPanel.setVisible(false);
+        //wahlPanel.setVisible(false);
+        //wahlzettelPanel.setVisible(false);
         //kandidatPanel.setVisible(false);
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -113,6 +120,7 @@ public class KlassensprecherwahlView extends FrameView {
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
         mainPanel = new javax.swing.JPanel();
+        wahlzettelPanel = new javax.swing.JPanel();
         kandidatPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listShow = new javax.swing.JList();
@@ -192,6 +200,19 @@ public class KlassensprecherwahlView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        wahlzettelPanel.setName("wahlzettelPanel"); // NOI18N
+
+        javax.swing.GroupLayout wahlzettelPanelLayout = new javax.swing.GroupLayout(wahlzettelPanel);
+        wahlzettelPanel.setLayout(wahlzettelPanelLayout);
+        wahlzettelPanelLayout.setHorizontalGroup(
+            wahlzettelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        wahlzettelPanelLayout.setVerticalGroup(
+            wahlzettelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         kandidatPanel.setName("kandidatPanel"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -233,14 +254,14 @@ public class KlassensprecherwahlView extends FrameView {
         kandidatPanelLayout.setHorizontalGroup(
             kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kandidatPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kandidatPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(kandidatPanelLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
+                        .addGap(151, 151, 151)
                         .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kandidatPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,12 +275,9 @@ public class KlassensprecherwahlView extends FrameView {
         kandidatPanelLayout.setVerticalGroup(
             kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kandidatPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kandidatPanelLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kandidatPanelLayout.createSequentialGroup()
+                .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kandidatPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(kandidatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,7 +286,10 @@ public class KlassensprecherwahlView extends FrameView {
                             .addComponent(jLabel1))
                         .addGap(35, 35, 35)
                         .addComponent(next1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)))
+                        .addGap(61, 61, 61))
+                    .addGroup(kandidatPanelLayout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane1)))
                 .addGap(174, 174, 174))
         );
 
@@ -302,12 +323,9 @@ public class KlassensprecherwahlView extends FrameView {
                 .addGroup(wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblKandidat)
-                        .addGroup(wahlPanelLayout.createSequentialGroup()
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createSequentialGroup()
-                        .addComponent(btnNext)
-                        .addContainerGap())))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNext, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         wahlPanelLayout.setVerticalGroup(
             wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,6 +354,11 @@ public class KlassensprecherwahlView extends FrameView {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(wahlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(wahlzettelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +372,11 @@ public class KlassensprecherwahlView extends FrameView {
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(wahlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(wahlzettelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -368,6 +396,7 @@ public class KlassensprecherwahlView extends FrameView {
         nextKandidat();
         wahlPanel.setVisible(true);
         mainPanel.revalidate();
+        setComponent(wahlzettelPanel);
     }//GEN-LAST:event_next1ActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -375,14 +404,88 @@ public class KlassensprecherwahlView extends FrameView {
         nextKandidat();
     }//GEN-LAST:event_btnNextActionPerformed
 
+    private void initWahlzettelPanel(){
+        String[][] stimmzettel = wahl.getStimmzettel();
+        int anzahlZeilen = stimmzettel.length;
+        wahlzettelPanel.setLayout(new GridLayout(3,1));
+        // Wahlzettel
+        JPanel stimmzettelPanel = new JPanel();
+        stimmzettelPanel.setLayout(new GridLayout(anzahlZeilen,7));
+        for(int i = 0; i < anzahlZeilen; i++){
+            JLabel label1 = new JLabel(stimmzettel[i][0]);
+            JLabel label2 = new JLabel(stimmzettel[i][1]);
+            stimmzettelPanel.add(label1);
+            stimmzettelPanel.add(label2);
+            for(int j = 0; j < 5; j++){
+                JCheckBox checkbox = new JCheckBox();
+                checkbox.addItemListener(new WahlItemListener(label1, i, stimme,cbCleaner));
+                cbCleaner.addObserver(new CleanableCheckbox(checkbox,i));
+                stimmzettelPanel.add(checkbox);
+            }
+        }
+        // Buttom zum Abschicken
+        JButton button = new JButton("Abschicken");
+        button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                wahl.commitStimmzettel(stimme);
+                cbCleaner.cleanRow(CheckboxCleaner.ALL);
+            }
+        });
+        JButton button2 = new JButton("Wahl beenden");
+        button2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                wahl.commitStimmzettel(stimme);
+            }
+        });
+        wahlzettelPanel.add(stimmzettelPanel);
+        wahlzettelPanel.add(button);
+        wahlzettelPanel.add(button2);
+    }
+    
+    private class WahlItemListener implements ItemListener{
+        
+        private final JLabel label;
+        private final int position;
+        private final String[] stimme;
+        private final CheckboxCleaner cbc;
+        
+        public WahlItemListener(JLabel label, int pos, String[] stimme, CheckboxCleaner cbc){
+            this.label = label;
+            this.position = pos;
+            this.stimme = stimme;
+            this.cbc = cbc;
+        }
+        
+        @Override
+        public void itemStateChanged(ItemEvent evt){
+            if(evt.getStateChange() == ItemEvent.DESELECTED){
+                stimme[position] = null;
+            } else {
+                stimme[position] = label.getText();
+                JCheckBox checkbox = (JCheckBox)evt.getSource();
+                cbc.cleanRow(position);
+                checkbox.setSelected(true);
+            }
+        }
+        
+    }
+    
     private void update(){
         kandidatenListe.setText(wahl.getKandidaten());
     }
     
     private void nextKandidat(){
         String kandidat = wahl.getNext();
-        lblKandidat.setText(kandidat + " gibt seine Thesen ein");
-        taThesen.setText("");
+        System.out.println(kandidat);
+        if(kandidat != null){
+            wahlPanel.setVisible(false);
+            initWahlzettelPanel();
+            wahlzettelPanel.setVisible(true);
+            setComponent(wahlzettelPanel);
+        } else {
+            lblKandidat.setText(kandidat + " gibt seine Thesen ein");
+            taThesen.setText("");
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,6 +509,7 @@ public class KlassensprecherwahlView extends FrameView {
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTextArea taThesen;
     private javax.swing.JPanel wahlPanel;
+    private javax.swing.JPanel wahlzettelPanel;
     // End of variables declaration//GEN-END:variables
 
     
@@ -416,5 +520,7 @@ public class KlassensprecherwahlView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
-    private Wahlcontroller wahl = new Wahlcontroller();
+    private final Wahlcontroller wahl = new Wahlcontroller();
+    private final String[] stimme = new String[5];
+    private final CheckboxCleaner cbCleaner = new CheckboxCleaner();
 }
