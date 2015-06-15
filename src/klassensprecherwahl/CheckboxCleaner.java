@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package klassensprecherwahl;
 
 import java.util.Observable;
 
 /**
- *
- * @author Niclas
+ * Observable-Klasse, die beim Wahlzettel zum deselektieren aller Checkboxen in
+ * einer Spalte benoetigt wird.
+ * @author Niclas Schirrmeister, Stefan Kulow, Sean Sinare
  */
 public class CheckboxCleaner extends Observable{
     
+    /** Konstanten reprsesentiert alle Checkboxen */
     public static final int ALL = -1;
     
+    /**
+     * deselektiert alle Checkboxen in einer Spalte
+     * @param row Spaltennummer, CheckboxCleaner.ALL fuer alle Spalten
+     */
     public void cleanRow(int row){
         setChanged();
         notifyObservers(row);
