@@ -14,20 +14,19 @@ import javax.swing.JCheckBox;
  *
  * @author Niclas
  */
-public class CleanableCheckbox implements Observer{
+public class CleanableCheckbox extends JCheckBox implements Observer{
     
-    private final JCheckBox checkbox;
     private final int pos;
     
-    public CleanableCheckbox(JCheckBox checkbox, int pos){
-        this.checkbox = checkbox;
+    public CleanableCheckbox(int pos){
         this.pos = pos;
     }
     
     public void update(Observable ob, Object arg){
         int posToClean = (Integer)arg;
         if(posToClean == pos || posToClean == CheckboxCleaner.ALL){
-            checkbox.setSelected(false);
+            setSelected(false);
+            //System.out.println("hallo");
         }
     }
 }

@@ -51,7 +51,9 @@ public class Wahl {
     
     
     public Kandidat[] getKandidatenAsArray() {
-        return kandidaten.values().toArray(new Kandidat[0]);
+        Kandidat[] kandis = kandidaten.values().toArray(new Kandidat[0]);
+        Arrays.sort(kandis);
+        return kandis;
     }
     
     
@@ -59,11 +61,12 @@ public class Wahl {
         return this.kandidaten.get(name);
     }
     
-    public void createStichwahl() {
-        if(1==1) {
-            
-        }else {
-            
+    public void stichwahlStarten() {
+        Kandidat[] wahlsieger = getWahlergebnis().getWahlsieger();
+        stimmzettel.clear();
+        kandidaten.clear();
+        for(Kandidat k:wahlsieger){
+            addKandidat(k);
         }
     }
     

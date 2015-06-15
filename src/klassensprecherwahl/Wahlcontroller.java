@@ -76,4 +76,21 @@ public class Wahlcontroller {
         else
             return null;
     }
+    
+    public int getSummeAllerSimmen(){
+        return wahl.getWahlergebnis().getSummeAllerStimmen();
+    }
+    
+    public String[] getWahlsieger(){
+        Kandidat[] wahlsieger = wahl.getWahlergebnis().getWahlsieger();
+        String[] wahlsiegerAsStr = new String[wahlsieger.length];
+        for(int i = 0; i < wahlsieger.length; i++){
+            wahlsiegerAsStr[i] = wahlsieger[i].getName();
+        }
+        return wahlsiegerAsStr;
+    }
+    
+    public void stichwahlStarten(){
+        wahl.stichwahlStarten();
+    }
 }

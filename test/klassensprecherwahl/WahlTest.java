@@ -57,4 +57,21 @@ public class WahlTest {
         Assert.assertArrayEquals(erwartet,
                 wahl.getWahlergebnis().getWahlergebnisAsStringArray());
     }
+    
+    @Test
+    public void stichwahlStarten(){
+        Wahl wahl = new Wahl();
+        Kandidat k1 = new Kandidat("a");
+        Kandidat k2 = new Kandidat("b");
+        Kandidat k3 = new Kandidat("c");
+        Kandidat[] stimmen = {k1,k2,k1,k3,k2};
+        wahl.addKandidat(k1);
+        wahl.addKandidat(k2);
+        wahl.addKandidat(k3);
+        Stimmzettel sz = new Stimmzettel(stimmen);
+        wahl.addStimme(sz);
+        wahl.stichwahlStarten();
+        Kandidat[] erwartet = {k1,k2};
+        Assert.assertArrayEquals(erwartet,wahl.getKandidatenAsArray());
+    }
 }

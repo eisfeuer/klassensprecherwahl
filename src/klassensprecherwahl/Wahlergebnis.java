@@ -8,6 +8,7 @@ package klassensprecherwahl;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -23,11 +24,20 @@ public class Wahlergebnis {
     }
     
     public void addStimme(Kandidat k){
+        if(k == null) return;
         if(wahlergebnis.containsKey(k)){
             wahlergebnis.put(k, wahlergebnis.get(k) + 1);
         } else {
             wahlergebnis.put(k, 1);
         }
+    }
+    
+    public int getSummeAllerStimmen(){
+        int summe = 0;
+        for(Integer i:wahlergebnis.values()){
+            summe += i;
+        }
+        return summe;
     }
     
     public String[][] getWahlergebnisAsStringArray(){
@@ -40,10 +50,23 @@ public class Wahlergebnis {
         return ergebnis;
     }
     
-    public Kandidat getWahlsieger(){
+    public Kandidat[] getWahlsieger(){
         WahlergebnisItem[] items = toItems();
         Arrays.sort(items);
-        return items.length < 1 ? null : items[0].getKandidat();
+        // keine Kandidaten
+        if(items.length < 1) return new Kandidat[0];
+        LinkedList<Kandidat>wahlsieger = new LinkedList<Kandidat>();
+        wahlsieger.add(items[0].getKandidat());
+        int i = 1;
+        while(i < items.length && items[i].compareTo(items[0]) == 0){
+          wahlsieger.add(items[i].getKandidat());
+          i++;   
+        }
+        return wahlsieger.toArray(new Kandidat[0]);
+    }
+    
+    public boolean istStimmenGleichstand(){
+        return getWahlsieger().length > 1;
     }
     
     private WahlergebnisItem[] toItems(){
