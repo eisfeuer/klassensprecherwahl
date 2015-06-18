@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 
 /**
  * The application's main frame.
@@ -132,10 +133,6 @@ public class KlassensprecherwahlView extends FrameView {
         jScrollPane3 = new javax.swing.JScrollPane();
         kandidatenListe = new javax.swing.JTextArea();
         wahlPanel = new javax.swing.JPanel();
-        btnNext = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        taThesen = new javax.swing.JTextArea();
-        lblKandidat = new javax.swing.JLabel();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -310,47 +307,15 @@ public class KlassensprecherwahlView extends FrameView {
         wahlPanel.setBackground(resourceMap.getColor("wahlPanel.background")); // NOI18N
         wahlPanel.setName("wahlPanel"); // NOI18N
 
-        btnNext.setText(resourceMap.getString("btnNext.text")); // NOI18N
-        btnNext.setName("btnNext"); // NOI18N
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        taThesen.setColumns(20);
-        taThesen.setRows(5);
-        taThesen.setName("taThesen"); // NOI18N
-        jScrollPane2.setViewportView(taThesen);
-
-        lblKandidat.setText(resourceMap.getString("lblKandidat.text")); // NOI18N
-        lblKandidat.setName("lblKandidat"); // NOI18N
-
         javax.swing.GroupLayout wahlPanelLayout = new javax.swing.GroupLayout(wahlPanel);
         wahlPanel.setLayout(wahlPanelLayout);
         wahlPanelLayout.setHorizontalGroup(
             wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(wahlPanelLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblKandidat)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnNext, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+            .addGap(0, 648, Short.MAX_VALUE)
         );
         wahlPanelLayout.setVerticalGroup(
             wahlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wahlPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(lblKandidat)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNext)
-                .addContainerGap())
+            .addGap(0, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -420,13 +385,8 @@ public class KlassensprecherwahlView extends FrameView {
         nextKandidat();
         wahlPanel.setVisible(true);
         mainPanel.revalidate();
-        setComponent(wahlzettelPanel);
+        //setComponent(wahlzettelPanel);
     }//GEN-LAST:event_next1ActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        wahl.setThesen(taThesen.getText());
-        nextKandidat();
-    }//GEN-LAST:event_btnNextActionPerformed
 
     private void initWahlzettelPanel(){
         String[][] stimmzettel = wahl.getStimmzettel();
@@ -459,16 +419,37 @@ public class KlassensprecherwahlView extends FrameView {
         JButton button2 = new JButton("Wahl beenden");
         button2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                wahlzettelPanel.setVisible(false);
-                initWahlergebnisPanel();
-                setComponent(wahlergebnisPanel);
-                wahlergebnisPanel.setVisible(true);
+                if(wahl.getSummeAllerSimmen() > 0)
+                {
+                    wahlzettelPanel.setVisible(false);
+                    initWahlergebnisPanel();
+                    setComponent(wahlergebnisPanel);
+                    wahlergebnisPanel.setVisible(true);
+                }
             }
         });
         wahlzettelPanel.add(stimmzettelPanel);
         wahlzettelPanel.add(button);
         wahlzettelPanel.add(button2);
     }
+    
+    public void initWahlthesenPanel(String kandidat){
+        wahlPanel.removeAll();
+        wahlPanel.setLayout(new GridLayout(3,1));
+        JLabel lblKandidat = new JLabel(kandidat + " gibt seine Thesen ein");
+        wahlPanel.add(lblKandidat);
+        final JTextArea taThesen = new JTextArea("");
+        wahlPanel.add(taThesen);
+        JButton btnNext = new JButton("weiter");
+        btnNext.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                wahl.setThesen(taThesen.getText());
+                nextKandidat();
+            }
+        });
+        wahlPanel.add(btnNext);
+        wahlPanel.revalidate();
+    }  
     
     private void initWahlergebnisPanel(){
         String[][] wahlergebnis = wahl.getWahlergebnis();
@@ -553,29 +534,26 @@ public class KlassensprecherwahlView extends FrameView {
     
     private void nextKandidat(){
         String kandidat = wahl.getNext();
-        System.out.println(kandidat);
-        if(kandidat != null){
+        if(kandidat == null){
+            System.out.println("Wahl gestartet");
             wahlPanel.setVisible(false);
             initWahlzettelPanel();
             wahlzettelPanel.setVisible(true);
             setComponent(wahlzettelPanel);
         } else {
-            lblKandidat.setText(kandidat + " gibt seine Thesen ein");
-            taThesen.setText("");
+            System.out.println(kandidat);
+            initWahlthesenPanel(kandidat);
         }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addName;
-    private javax.swing.JButton btnNext;
     private javax.swing.JTextField insertName1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel kandidatPanel;
     private javax.swing.JTextArea kandidatenListe;
-    private javax.swing.JLabel lblKandidat;
     private javax.swing.JList listShow;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -584,7 +562,6 @@ public class KlassensprecherwahlView extends FrameView {
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
-    private javax.swing.JTextArea taThesen;
     private javax.swing.JPanel wahlPanel;
     private javax.swing.JPanel wahlergebnisPanel;
     private javax.swing.JPanel wahlzettelPanel;

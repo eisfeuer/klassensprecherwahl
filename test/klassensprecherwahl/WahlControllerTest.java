@@ -30,32 +30,12 @@ public class WahlControllerTest {
         String erwartet = "Niclas Schirrmeister\nSean Sinare\nStefan Kulow\nyy";
         assertEquals(erwartet, wc.getKandidaten());
     }
-    
-    @Test
-    public void setWahlthese(){
-        Wahlcontroller wc = new Wahlcontroller();
-        wc.addKandidat("Homer Simpsons");
-        wc.setThesen("Homer Simpsons", "Schulfrei und Freibier für alle");
-        assertEquals("Schulfrei und Freibier für alle",wc.getThesen("Homer Simpsons"));
-    }
+   
     
     @Test
     public void getThesenWennKandidatNichtExistiert(){
         Wahlcontroller wc = new Wahlcontroller();
         assertEquals("",wc.getThesen("ghost"));
-    }
-    
-    @Test
-    public void getStimmzettel(){
-        Wahlcontroller wc = new Wahlcontroller();
-        wc.addKandidat("a");
-        wc.setThesen("a", "t");
-        wc.addKandidat("b");
-        wc.setThesen("b", "u");
-        wc.addKandidat("c");
-        wc.setThesen("c", "v");
-        String[][] erwartet = {{"a","t"},{"b","u"},{"c","v"}};
-        Assert.assertArrayEquals(erwartet, wc.getStimmzettel());
     }
     
     @Test
